@@ -67,7 +67,7 @@ class Rate
         "datasequences" => [
           {
             "title" => @instrument_single,
-            "refreshEveryNSeconds" => 120,
+            "refreshEveryNSeconds" => 5,
             "datapoints" => [
               pair_hash
             ]
