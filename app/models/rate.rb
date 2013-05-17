@@ -57,7 +57,6 @@ class Rate
     pair_hash =
     {
       "Time" => @time,
-      "Bid" => @pair_bid,
       "Ask" => @pair_ask
     }
 
@@ -68,6 +67,7 @@ class Rate
         "datasequences" => [
           {
             "title" => @instrument_single,
+            "refreshEveryNSeconds" => 120,
             "datapoints" => [
               pair_hash
             ]
