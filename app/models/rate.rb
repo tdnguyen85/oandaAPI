@@ -28,7 +28,7 @@ class Rate
 
   def formatted_candle
     pair_hash_candle = @candle_array.map do |item|
-      {"Time" => item["time"], "Price" => item["closeMid"]}
+      {"title" => item["time"], "value" => item["closeMid"]}
     end
 
     statusboard_hash_candle =
@@ -42,8 +42,8 @@ class Rate
         "type" => "line",
         "datasequences" => [
           {
-            "title" => @instrument_candle,
-            "refreshEveryNSeconds" => 120,
+            "title" => "EUR_USD",
+            "refreshEveryNSeconds" => 5,
             "datapoints" => [
               pair_hash_candle
             ]
@@ -56,8 +56,8 @@ class Rate
   def formatted_single
     pair_hash =
     {
-      "Time" => @time,
-      "Ask" => @pair_ask
+      "title" => @time,
+      "value" => @pair_ask
     }
 
     statusboard_hash =
@@ -66,7 +66,7 @@ class Rate
         "title" => "FX rate for Euro to US dollar",
         "datasequences" => [
           {
-            "title" => @instrument_single,
+            "title" => "EUR_USD",
             "refreshEveryNSeconds" => 5,
             "datapoints" => [
               pair_hash
