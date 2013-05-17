@@ -28,7 +28,7 @@ class Rate
 
   def formatted_candle
     pair_hash_candle = @candle_array.map do |item|
-      {"title" => "item["time"]", "value" => item["closeMid"]}
+      {"title" => item["time"].to_s, "value" => item["closeMid"]}
     end
 
     statusboard_hash_candle =
@@ -56,7 +56,7 @@ class Rate
   def formatted_single
     pair_hash =
     {
-      "title" => "@time",
+      "title" => @time.to_s,
       "value" => @pair_ask
     }
 
