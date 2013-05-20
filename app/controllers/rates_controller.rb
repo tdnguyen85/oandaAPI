@@ -1,7 +1,5 @@
 class RatesController < ApplicationController
 
-  def index
-  end
 
   def statusboard
     chosen_rate = Rate.new
@@ -17,7 +15,7 @@ class RatesController < ApplicationController
     @oanda_result_morris = chosen_rate_morris.fetch_oanda("EUR_USD")
 
     respond_to do |format|
-      format.html { redirect_to morris }
+      format.html #{ redirect_to morris }
       format.json { render :json => @oanda_result_morris }
     end
   end

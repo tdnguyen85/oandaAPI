@@ -5,15 +5,19 @@ require 'uri'
 class Rate < ActiveRecord::Base
   #attr_accessible :pair, :pair_time, :bid, :ask
 
-  def fetch_oanda(q)
+  def initialize
 
-    oanda_result = open("http://api-sandbox.oanda.com/v1/instruments/#{URI.escape(q)}/candles?count=10")
+  end
+
+  def fetch_oanda(q)
+    #q = "EUR_USD"
+    oanda_result = open("http://api-sandbox.oanda.com/v1/instruments/#{URI.escape(q)}/candles?count=40")
     oanda_json = JSON.load(oanda_result.read)
 
     candle_array = oanda_json["candles"]
 
     @pair_hash_candle = candle_array.map do |item|
-      { "title" => item["time"].to_s, "value" => item["closeMid"] }
+      { "title" => Time.at(item["time"]), "value" => item["closeMid"] }
     end
 
     # @statusboard_hash =

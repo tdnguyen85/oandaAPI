@@ -10,7 +10,7 @@ $(document).ready ->
     success: (data) ->
       $("#chart").html('')
       Morris.Line(
-        element: 'line-chart'
+        element: 'chart'
         data: data
         xkey: 'title'
         ykeys: ['value']
