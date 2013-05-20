@@ -8,7 +8,7 @@ describe RatesController do
       expect(rate).to be_true
     end
 
-    it "should call the fetch_oanda methof with an argument" do
+    it "should call the fetch_oanda method with an argument" do
       rate = Rate.new
       rate_oanda = rate.fetch_oanda("EUR_USD")
       expect(rate_oanda).to be_an Array
@@ -25,6 +25,12 @@ describe RatesController do
     it "should create a new rate instance" do
       rate = Rate.new
       expect(rate).to be_true
+    end
+
+    it "should call the fetch_oanda method with an argument" do
+      rate = Rate.new
+      rate_oanda = rate.fetch_oanda("EUR_USD")
+      expect(rate_oanda).to be_an Array
     end
 
      it "should render json array of hashes formatted for morris" do

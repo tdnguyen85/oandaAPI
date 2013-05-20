@@ -8,6 +8,11 @@ $(document).ready ->
     method: 'get'
     dataType: 'json'
     success: (data) ->
+      priceArray = _.map(data, (object) ->
+        object.value
+      )
+      minPrice = _.min(priceArray)
+      maxPrice = _.max(priceArray)
       $("#chart").html('')
       Morris.Line(
         element: 'chart'
@@ -15,5 +20,7 @@ $(document).ready ->
         xkey: 'title'
         ykeys: ['value']
         labels: ['EUR_USD']
+        ymin: minPrice
+        ymax: maxPrice
       )
   )

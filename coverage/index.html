@@ -14,7 +14,7 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-05-19T21:37:33-07:00">2013-05-19T21:37:33-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-05-20T10:51:51-07:00">2013-05-20T10:51:51-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.14
+         4.94
        </span>
     </span> hits/line)
   </h2>
@@ -97,7 +97,7 @@
         <td>11</td>
         <td>11</td>
         <td>0</td>
-        <td>16.5</td>
+        <td>20.5</td>
       </tr>
       
     </tbody>
@@ -170,7 +170,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         16.5
+         20.5
        </span>
     </span> hits/line)
   </h2>
@@ -202,7 +202,7 @@
         <td>11</td>
         <td>11</td>
         <td>0</td>
-        <td>16.5</td>
+        <td>20.5</td>
       </tr>
       
     </tbody>
@@ -726,14 +726,14 @@
           <code class="ruby">    #q = &quot;EUR_USD&quot;</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="14">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="14">
+          <span class="hits">5</span>
           
           <code class="ruby">    oanda_result = open(&quot;http://api-sandbox.oanda.com/v1/instruments/#{URI.escape(q)}/candles?count=40&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="15">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="15">
+          <span class="hits">5</span>
           
           <code class="ruby">    oanda_json = JSON.load(oanda_result.read)</code>
         </li>
@@ -744,8 +744,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="17">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="17">
+          <span class="hits">5</span>
           
           <code class="ruby">    candle_array = oanda_json[&quot;candles&quot;]</code>
         </li>
@@ -756,14 +756,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="19">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="19">
+          <span class="hits">5</span>
           
           <code class="ruby">    @pair_hash_candle = candle_array.map do |item|</code>
         </li>
       
-        <li class="covered" data-hits="160" data-linenumber="20">
-          <span class="hits">160</span>
+        <li class="covered" data-hits="200" data-linenumber="20">
+          <span class="hits">200</span>
           
           <code class="ruby">      { &quot;title&quot; =&gt; Time.at(item[&quot;time&quot;]), &quot;value&quot; =&gt; item[&quot;closeMid&quot;] }</code>
         </li>
