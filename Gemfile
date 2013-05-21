@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 group :test do
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'webmock'
 end
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

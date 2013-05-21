@@ -3,6 +3,7 @@ Oanda::Application.routes.draw do
   root :to => "rates#morris"
   get "/statusboard", :to => "rates#statusboard", :as => 'statusboard'
   get "/morris", :to => "rates#morris", :as => "morris"
+  get "/index", :to => "rates#index", :as => "index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,1 +1,94 @@
-hello world
+<!doctype html>
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <button id="button">Render</button>
+    <div id="container">
+      <svg id="image">
+
+      </svg>
+    </div>
+    <script type="text/javascript">
+      var button = document.getElementById('button');
+      var container = document.getElementById('container');
+      var data;
+
+      d3.json('/index.json', function(error, json) {
+        if (error) return console.warn(error);
+        data = json;
+        // visualizeit();
+      });
+
+
+      button.onclick = function () {
+        var svg = d3.select('div#container svg');
+
+        var priceArray = _.map(data, function(object){
+          return object.y;
+        });
+        var minPrice = _.min(priceArray);
+        var maxPrice = _.max(priceArray);
+
+        var timeArray = _.map(data, function(object){
+          return object.x;
+        });
+        var minTime = data[0]['x'];
+        var maxTime = data[39]['x'];
+
+        WIDTH = 600,
+        HEIGHT = 400,
+        MARGINS = {top: 20, right: 20, bottom: 20, left: 60},
+        xRange = d3.scale.linear().range ([MARGINS.left, WIDTH - MARGINS.right]).domain([minTime, maxTime]),
+        yRange = d3.scale.linear().range ([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minPrice, maxPrice]),
+        xAxis = d3.svg.axis() // generate an axis
+          .scale(xRange) // set the range of the axis
+          .tickSize(5) // height of the ticks
+          .tickSubdivide(true), // display ticks between text labels
+        yAxis = d3.svg.axis() // generate an axis
+          .scale(yRange) // set the range of the axis
+          .tickSize(5) // width of the ticks
+          .orient("left") // have the text labels on the left hand side
+          .tickSubdivide(true); // display ticks between text labels
+
+
+        svg.append("svg:g") // add a container for the axis
+          .attr("class", "x axis") // add some classes so we can style it
+          .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")") // move it into position
+          .call(xAxis); // finally, add the axis to the visualisation
+
+        svg.append("svg:g")
+          .attr("class", "y axis")
+          .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+          .call(yAxis);
+
+        var lineFunction = d3.svg.line()
+          .x(function(d){ return d.x;})
+          .y(function(d){ return d.y;})
+          .interpolate('cardinal');
+
+        var line = d3.svg.line()
+          .x(function(d) { return x(d.x); })
+          .y(function(d) { return y(d.y); });
+
+        svg.append('path')
+          .datum(data)
+          // .style("fill", "blue")
+          .style("stroke", "red")
+          .style("stroke-width", 2)
+          .attr("class", "line")
+          .attr("d", lineFunction(data));
+        // svg.append("path")
+        //   .datum(data)
+        //   .style("stroke", "red")
+        //   .attr("class", "line")
+        //   .attr("d", line);
+
+      };
+
+    </script>
+  </body>
+</html>

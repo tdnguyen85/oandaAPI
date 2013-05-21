@@ -23,4 +23,24 @@ $(document).ready ->
         ymin: minPrice
         ymax: maxPrice
       )
+
   )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

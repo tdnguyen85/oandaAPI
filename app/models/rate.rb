@@ -9,6 +9,19 @@ class Rate < ActiveRecord::Base
 
   end
 
+  def fetch_d3(q)
+    #q = "EUR_USD"
+    oanda_result = open("http://api-sandbox.oanda.com/v1/instruments/#{URI.escape(q)}/candles?count=40")
+    oanda_json = JSON.load(oanda_result.read)
+
+    candle_array = oanda_json["candles"]
+
+    @pair_hash_candle = candle_array.map do |item|
+      { "x" => (item["time"].to_s[-3..-1]).to_i , "y" => item["closeMid"] }
+
+    end
+  end
+
   def fetch_oanda(q)
     #q = "EUR_USD"
     oanda_result = open("http://api-sandbox.oanda.com/v1/instruments/#{URI.escape(q)}/candles?count=40")
